@@ -5,10 +5,12 @@ struct ConferenceView: View {
     @State var conferenceName: String = ""
     @State var userName: String = ""
 
-    // Conference Model that uses the Dolby.io Comms SDK
+    // The Model that uses the Dolby.io Comms SDK
     @StateObject var conference = Conference()
-    // AudioRecorder that records the last 10 seconds
+    // The AudioRecorder that records the last 10 seconds
     @StateObject var audioRecorder = AudioRecorder()
+    // The Model that uploads an audio file to Thehive.ai
+    @StateObject var audioModeration = AudioModeration()
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -57,6 +59,51 @@ struct ConferenceView: View {
                 }
                 Text(conference.errorMessage)
                     .foregroundColor(.red)
+                Button("Request Audio Moderation") {
+                    audioModeration.post(from: audioRecorder)
+                }
+                .buttonStyle(.plain)
+                .font(.headline)
+                .foregroundColor(.white)
+                .frame(width: 250, height: 50)
+                .background(Color.accent)
+                .cornerRadius(5.0)
+                .disabled(audioModeration.isLoading)
+                VStack {
+                    if let status = audioModeration.resultStatus {
+                        Text("Moderation Result")
+                            .font(.title2)
+                        Divider()
+                        VStack(alignment: .leading) {
+                            Text("Code: \(status.code)")
+                            Text("Message: \(status.message)")
+                            Text("Language: \(status.language)")
+                            Divider()
+                        }
+                        Text("Transcribed Text:")
+                            .font(.headline)
+                        Text(audioModeration.transcript)
+                        Divider()
+                        Text("Classifications:")
+                            .font(.headline)
+                        ForEach(audioModeration.classifications, id: \.id) { result in
+                            if let text = result.text, let classes = result.classes {
+                                VStack(alignment: .leading) {
+                                    Divider()
+                                        .padding(.bottom)
+                                    Text("Text:")
+                                        .font(.headline)
+                                    Text(text)
+                                    Text("Classes:")
+                                        .font(.headline)
+                                    ForEach(classes, id: \.id) { item in
+                                        Text("\(item.class): \(item.score)")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         .padding()

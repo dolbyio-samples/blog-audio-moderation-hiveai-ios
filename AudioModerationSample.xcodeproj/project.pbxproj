@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BBC912C2987ED6C000766C0 /* AudioModeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC912B2987ED6C000766C0 /* AudioModeration.swift */; };
 		5BD7064329846CE30047583C /* AudioModerationSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7064229846CE30047583C /* AudioModerationSampleApp.swift */; };
 		5BD7064529846CE30047583C /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7064429846CE30047583C /* ConferenceView.swift */; };
 		5BD7064729846CE60047583C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BD7064629846CE60047583C /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5BBC912B2987ED6C000766C0 /* AudioModeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioModeration.swift; sourceTree = "<group>"; };
 		5BD7063F29846CE30047583C /* AudioModerationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioModerationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD7064229846CE30047583C /* AudioModerationSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioModerationSampleApp.swift; sourceTree = "<group>"; };
 		5BD7064429846CE30047583C /* ConferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceView.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				5BD706552985CAFD0047583C /* Conference.swift */,
 				5BD706602987E13A0047583C /* AudioRecorder.swift */,
+				5BBC912B2987ED6C000766C0 /* AudioModeration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD706612987E13A0047583C /* AudioRecorder.swift in Sources */,
+				5BBC912C2987ED6C000766C0 /* AudioModeration.swift in Sources */,
 				5BD706562985CAFD0047583C /* Conference.swift in Sources */,
 				5BD7064529846CE30047583C /* ConferenceView.swift in Sources */,
 				5BD7064329846CE30047583C /* AudioModerationSampleApp.swift in Sources */,
