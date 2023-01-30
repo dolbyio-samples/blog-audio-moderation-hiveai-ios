@@ -14,6 +14,8 @@
 		5BD706522985C6D80047583C /* VoxeetSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD706512985C6D80047583C /* VoxeetSDK */; };
 		5BD706562985CAFD0047583C /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD706552985CAFD0047583C /* Conference.swift */; };
 		5BD706582985CC950047583C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD706572985CC950047583C /* ColorExtension.swift */; };
+		5BD7065F2987E0E70047583C /* CircularBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7065E2987E0E60047583C /* CircularBuffer.swift */; };
+		5BD706612987E13A0047583C /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD706602987E13A0047583C /* AudioRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		5BD706542985C95E0047583C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5BD706552985CAFD0047583C /* Conference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		5BD706572985CC950047583C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		5BD7065E2987E0E60047583C /* CircularBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBuffer.swift; sourceTree = "<group>"; };
+		5BD706602987E13A0047583C /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 				5BD7064229846CE30047583C /* AudioModerationSampleApp.swift */,
 				5BD706572985CC950047583C /* ColorExtension.swift */,
 				5BD7064429846CE30047583C /* ConferenceView.swift */,
+				5BD7065E2987E0E60047583C /* CircularBuffer.swift */,
 				5BD7064629846CE60047583C /* Assets.xcassets */,
 				5BD7064829846CE60047583C /* Preview Content */,
 			);
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				5BD706552985CAFD0047583C /* Conference.swift */,
+				5BD706602987E13A0047583C /* AudioRecorder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,10 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD706612987E13A0047583C /* AudioRecorder.swift in Sources */,
 				5BD706562985CAFD0047583C /* Conference.swift in Sources */,
 				5BD7064529846CE30047583C /* ConferenceView.swift in Sources */,
 				5BD7064329846CE30047583C /* AudioModerationSampleApp.swift in Sources */,
 				5BD706582985CC950047583C /* ColorExtension.swift in Sources */,
+				5BD7065F2987E0E70047583C /* CircularBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

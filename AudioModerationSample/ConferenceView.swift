@@ -5,7 +5,10 @@ struct ConferenceView: View {
     @State var conferenceName: String = ""
     @State var userName: String = ""
 
+    // Conference Model that uses the Dolby.io Comms SDK
     @StateObject var conference = Conference()
+    // AudioRecorder that records the last 10 seconds
+    @StateObject var audioRecorder = AudioRecorder()
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -34,8 +37,10 @@ struct ConferenceView: View {
                         .cornerRadius(5.0)
                     Button(conference.isConnected ? "Leave" : "Join") {
                         if conference.isConnected {
+                            audioRecorder.stop()
                             conference.leave()
                         } else {
+                            audioRecorder.start()
                             conference.join(
                                 conferenceName: conferenceName,
                                 userName: userName
