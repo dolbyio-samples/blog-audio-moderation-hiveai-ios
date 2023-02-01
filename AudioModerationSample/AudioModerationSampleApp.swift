@@ -19,7 +19,7 @@ struct AudioModerationSampleApp: App {
         // Please read the documentation at:
         // https://docs.dolby.io/communications-apis/docs/initializing-ios
         // Generate a client access token from the Dolby.io dashboard and insert into accessToken variable
-        let accessToken = "ClientAccessToken"
+        let accessToken = Configuration.dolbyioAccessToken
         VoxeetSDK.shared.initialize(accessToken: accessToken) { closure, isExpired in
             closure(accessToken)
         }

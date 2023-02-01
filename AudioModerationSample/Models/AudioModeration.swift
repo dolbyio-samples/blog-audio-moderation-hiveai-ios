@@ -8,7 +8,6 @@ final class AudioModeration: ObservableObject {
     @Published private(set) var classifications: [AudioModerationClassification] =  []
     @Published private(set) var resultStatus: ResultStatus?
 
-    private let hiveProjectToken = "thehive.ai project api key"
     private let urlSession = URLSession.shared
     private let hiveSyncTaskUrl = URL(string: "https://api.thehive.ai/api/v2/task/sync")
     private var sessionTask: URLSessionUploadTask?
@@ -30,7 +29,7 @@ final class AudioModeration: ObservableObject {
             // Set the URLRequest to POST and to the specified URL
             var request = URLRequest(url: postURL)
             request.httpMethod = "POST"
-            request.addValue("Token \(self.hiveProjectToken)", forHTTPHeaderField: "Authorization")
+            request.addValue("Token \(Configuration.hiveProjectApiKey)", forHTTPHeaderField: "Authorization")
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
             let fileName = fileURL.lastPathComponent
