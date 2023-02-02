@@ -15,6 +15,10 @@ struct ConferenceView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
+                Image("dolbyioLogo")
+            }
+            .frame(height: 190)
+            VStack {
                 Text("Dolby.io Conference With Hive's Audio Moderation")
                     .font(.title)
 
@@ -105,8 +109,18 @@ struct ConferenceView: View {
                     }
                 }
             }
+            .padding()
+            .background(.background)
+            .cornerRadius(20)
         }
-        .padding()
+        .background(
+            LinearGradient(
+                colors: [.accent, .accentLight],
+                startPoint: .leading,
+                endPoint: .trailing
+            )
+            .ignoresSafeArea()
+        )
     }
 }
 
