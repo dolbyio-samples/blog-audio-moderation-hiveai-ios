@@ -36,9 +36,8 @@ final class AudioRecorder: ObservableObject {
     }
 
     func getBufferedAudioFileUrl() throws -> URL {
-
         guard let pcmData = audioBuffer?.readAll(), !pcmData.isEmpty else {
-            throw AudioRecorderError.corruptedAudioData
+            throw AudioRecorderError.noRecordToSend
         }
 
         let documentDirectoryUrl = try FileManager.default.url(
@@ -119,6 +118,7 @@ extension AudioRecorder : AudioDelegate {
 
 enum AudioRecorderError : Error {
     case corruptedAudioData
+    case noRecordToSend
 }
 
 extension AudioRecorderError: LocalizedError {
@@ -129,6 +129,8 @@ extension AudioRecorderError: LocalizedError {
                 "Audio data is corrupted",
                 comment: "Check the conversion method from PCM to WAV."
             )
+        case .noRecordToSend:
+            return NSLocalizedString("No record to send", comment: "")
         }
     }
 }

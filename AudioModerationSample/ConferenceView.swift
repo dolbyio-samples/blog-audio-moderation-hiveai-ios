@@ -73,6 +73,8 @@ struct ConferenceView: View {
                 .background(Color.accent)
                 .cornerRadius(5.0)
                 .disabled(audioModeration.isLoading)
+                Text(audioModeration.errorMessage)
+                    .foregroundColor(.red)
                 VStack {
                     if let status = audioModeration.resultStatus {
                         Text("Moderation Result")
