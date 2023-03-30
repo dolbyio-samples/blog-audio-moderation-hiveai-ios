@@ -14,6 +14,8 @@ final class Conference: ObservableObject {
 
     func join(conferenceName: String?, userName: String?) {
         isLoading = true
+        UserDefaults.conferenceName = conferenceName
+        UserDefaults.userName = userName
         openSession(userName: userName) { [weak self] error in
             if error == nil {
                 let options = VTConferenceOptions()
