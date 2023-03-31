@@ -36,11 +36,13 @@ struct ConferenceView: View {
                     .padding()
                     .background(Color.textFieldBackground)
                     .cornerRadius(5.0)
+                    .textInputAutocapitalization(.never)
                 HStack {
                     TextField("Username", text: $userName)
                         .padding()
                         .background(Color.textFieldBackground)
                         .cornerRadius(5.0)
+                        .textInputAutocapitalization(.never)
                     Button(conference.isConnected ? "Leave" : "Join") {
                         if conference.isConnected {
                             audioRecorder.stop()
@@ -61,6 +63,8 @@ struct ConferenceView: View {
                     .cornerRadius(5.0)
                     .disabled(conference.isLoading)
                 }
+                Text(audioRecorder.isRecording ? "Your voice is being recorded" : "")
+                    .foregroundColor(.red)
                 Text(conference.errorMessage)
                     .foregroundColor(.red)
                 Button("Request Audio Moderation") {
@@ -69,7 +73,8 @@ struct ConferenceView: View {
                 .buttonStyle(.plain)
                 .font(.headline)
                 .foregroundColor(.white)
-                .frame(width: 250, height: 50)
+                .frame(height: 50)
+                .padding(.horizontal)
                 .background(Color.accent)
                 .cornerRadius(5.0)
                 .disabled(audioModeration.isLoading)
@@ -103,7 +108,7 @@ struct ConferenceView: View {
                                     Text("Classes:")
                                         .font(.headline)
                                     ForEach(classes, id: \.id) { item in
-                                        Text("\(item.class): \(item.score)")
+                                        Text("\(item.class): \(item.score, specifier: "%.0f")")
                                     }
                                 }
                             }
@@ -123,6 +128,10 @@ struct ConferenceView: View {
             )
             .ignoresSafeArea()
         )
+        .onAppear {
+            conferenceName = UserDefaults.conferenceName ?? ""
+            userName = UserDefaults.userName ?? ""
+        }
     }
 }
 

@@ -60,37 +60,23 @@ final class AudioModeration: ObservableObject {
 
         request.setValue(String(data.count), forHTTPHeaderField: "Content-Length")
 
-        self.sessionTask = self.urlSession.uploadTask(with: request, from: data) { data, response, error in
+        self.sessionTask = self.urlSession.uploadTask(with: request, from: data) { [weak self] data, response, error in
             guard error == nil,
                   let data = data,
                   (response as? HTTPURLResponse)?.statusCode == 200
             else {
                 if let error = error {
-                    self.handle(error: error.localizedDescription)
+                    self?.handle(error: error.localizedDescription)
                 } else if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                    self.handle(error: "HTTP status code \(statusCode)")
+                    self?.handle(error: "HTTP status code \(statusCode)")
                 } else {
-                    self.handle(error: "Unknown error")
+                    self?.handle(error: "Unknown error")
                 }
                 return
             }
 
             let result = try? JSONDecoder().decode(AudioModerationResult.self, from: data)
-            DispatchQueue.main.async { [weak self] in
-                if let status = result?.status?.first {
-                    self?.resultStatus = ResultStatus(
-                        code: status.status.code,
-                        message: status.status.message,
-                        language: status.response?.language ?? ""
-                    )
-                    let output = status.response?.output?.first
-                    self?.transcript = output?.transcript ?? "empty"
-                    self?.classifications = output?.classifications ?? .init()
-                    self?.isLoading = false
-                } else {
-                    self?.handle(error: "JSON decode error")
-                }
-            }
+            self?.handle(result: result)
         }
 
         self.sessionTask?.resume()
